@@ -1,0 +1,120 @@
+import java.util.*; 
+  
+public class ElectoralVoting
+{ 
+    String name;
+    
+    public static void findWinner(String votes[]) 
+    { 
+        // Insert all votes in a hashmap 
+        Map<String,Integer> map = 
+                    new HashMap<String, Integer>(); 
+        for (String str : votes) 
+        { 
+            if (map.keySet().contains(str)) 
+                map.put(str, map.get(str) + 1); 
+            else
+                map.put(str, 1); 
+        } 
+  
+        // Traverse through map to find the candidate 
+        // with maximum votes. 
+        int maxValueInMap = 0; 
+        String winner = ""; 
+        for (Map.Entry<String,Integer> entry : map.entrySet()) 
+        { 
+            String key  = entry.getKey(); 
+            Integer val = entry.getValue(); 
+            if (val > maxValueInMap) 
+            { 
+                maxValueInMap = val; 
+                winner = key; 
+            } 
+  
+            // If there is a tie, pick lexicographically 
+            // smaller.  
+            else if (val == maxValueInMap && 
+                winner.compareTo(key) > 0) 
+                winner = key; 
+        } 
+        System.out.println(winner); 
+    } 
+  
+    // Driver code 
+    public static void main(String[] args) 
+    { 
+       String[] votes = { "john", "johnny", "jackie", 
+                         "johnny", "john", "jackie", 
+                         "jamie", "jamie", "john", 
+                         "johnny", "jamie", "johnny", 
+                         "john" }; 
+  
+       findWinner(votes); 
+    } 
+} 
+C#
+filter_none
+edit
+play_arrow
+
+brightness_4
+// C# program to find winner in an election. 
+using System; 
+using System.Collections.Generic; 
+  
+public class ElectoralVotingBallot 
+{ 
+    /* We have four Candidates with name as 'John', 
+    'Johnny', 'jamie', 'jackie'. 
+    The votes in String array are as per the 
+    votes casted. Print the name of candidates 
+    received Max vote. */
+    public static void findWinner(String []votes) 
+    { 
+        // Insert all votes in a hashmap 
+        Dictionary<String,int> map = 
+                    new Dictionary<String, int>(); 
+        foreach (String str in votes) 
+        { 
+            if (map.ContainsKey(str)) 
+                map[str] = map[str] + 1; 
+            else
+                map.Add(str, 1); 
+        } 
+  
+        // Traverse through map to find the candidate 
+        // with maximum votes. 
+        int maxValueInMap = 0; 
+        String winner = ""; 
+        foreach(KeyValuePair<String, int> entry in map) 
+        { 
+            String key = entry.Key; 
+            int val = entry.Value; 
+            if (val > maxValueInMap) 
+            { 
+                maxValueInMap = val; 
+                winner = key; 
+            } 
+  
+            // If there is a tie, pick lexicographically 
+            // smaller.  
+            else if (val == maxValueInMap && 
+                winner.CompareTo(key) > 0) 
+                winner = key; 
+        } 
+        Console.WriteLine(winner); 
+    } 
+  
+    // Driver code 
+    public static void Main(String[] args) 
+    { 
+        String[] votes = { "john", "johnny", "jackie", 
+                            "johnny", "john", "jackie", 
+                            "jamie", "jamie", "john", 
+                            "johnny", "jamie", "johnny", 
+                            "john" }; 
+      
+        findWinner(votes); 
+    } 
+} 
+  
